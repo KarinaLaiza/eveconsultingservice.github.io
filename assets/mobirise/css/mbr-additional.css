@@ -3296,5 +3296,28 @@ a {
 .cid-uMB7ICvz1B .mbr-section-title {
   color: #0b2545;
 }
-#rodape-elas { background-color: #f8f8f8; padding: 10px 0; position: relative; z-index: 1000; }
-#rodape-elas a { color: #000 !important; text-decoration: underline !important; font-weight: 700 !important; pointer-events: auto !important; position: relative !important; z-index: 10001 !important; }
+#rodape-elas {
+  background-color: #f8f8f8 !important;
+  padding: 10px 0 !important;
+  text-align: center !important;   /* <-- mantém centralizado */
+  font-size: 14px !important;
+  color: #555 !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  width: 100% !important;          /* garante largura total */
+}
+
+#rodape-elas div {
+  margin: 0 auto !important;       /* centraliza o conteúdo */
+  display: inline-block !important;/* evita esticar demais */
+}
+
+#rodape-elas a {
+  color: #000 !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+  position: relative !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+
