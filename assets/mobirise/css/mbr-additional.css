@@ -3296,3 +3296,5 @@ a {
 .cid-uMB7ICvz1B .mbr-section-title {
   color: #0b2545;
 }
+#rodape-elas { background-color: #f8f8f8; padding: 10px 0; position: relative; z-index: 1000; }
+#rodape-elas a { color: #000 !important; text-decoration: underline !important; font-weight: 700 !important; pointer-events: auto !important; position: relative !important; z-index: 10001 !important; }
