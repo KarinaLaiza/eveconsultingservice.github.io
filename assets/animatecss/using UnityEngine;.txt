@@ -1,0 +1,111 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class StartScreen : MonoBehaviour
+{
+    public InputField nameInput;
+    public GameObject startButton;
+
+    void Start()
+    {
+        nameInput.text = "Nome do Jogador";
+    }
+
+    public void OnStartButtonClick()
+    {
+        PlayerPrefs.SetString("PlayerName", nameInput.text);
+        Application.LoadLevel("Market");
+    }
+}
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class MarketScreen : MonoBehaviour
+{
+    public GameObject ingredientPrefab;
+    public Transform contentTransform;
+    public Button nextButton;
+
+    private Ingredient[] ingredients;
+
+    void Start()
+    {
+        ingredients = new Ingredient[]
+        {
+            new Ingredient("Flour", 200),
+            new Ingredient("Sugar", 150),
+            new Ingredient("Butter", 100),
+            new Ingredient("Eggs", 4),
+            new Ingredient("Baking Powder", 2),
+            new Ingredient("Vanilla Extract", 1),
+            new Ingredient("Milk", 200),
+        };
+
+        foreach (Ingredient ingredient in ingredients)
+        {
+            GameObject obj = Instantiate(ingredientPrefab);
+            obj.transform.SetParent(contentTransform);
+            obj.transform.localScale = Vector3.one;
+            obj.GetComponentInChildren<Text>().text = ingredient.name + " - " + ingredient.quantity;
+            obj.GetComponent<Button>().onClick.AddListener(() => OnIngredientClick(ingredient));
+        }
+
+        nextButton.interactable = false;
+    }
+
+    public void OnIngredientClick(Ingredient ingredient)
+    {
+        PlayerPrefs.SetInt(ingredient.name, PlayerPrefs.GetInt(ingredient.name, 0) + 1);
+        nextButton.interactable = true;
+    }
+
+    public void OnNextButtonClick()
+    {
+        Application.LoadLevel("Baking");
+    }
+}
+
+[System.Serializable]
+public class Ingredient
+{
+    public string name;
+    public int quantity;
+
+    public Ingredient(string name, int quantity)
+    {
+        this.name = name;
+        this.quantity = quantity;
+    }
+}
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class BakingScreen : MonoBehaviour
+{
+    public GameObject ingredientPrefab;
+    public Transform contentTransform;
+    public Button bakeButton;
+
+    private Ingredient[] ingredients;
+
+    void Start()
+    {
+        ingredients = new Ingredient[]
+        {
+            new Ingredient("Flour", 200),
+            new Ingredient("Sugar", 150),
+            new Ingredient("Butter", 100),
+            new Ingredient("Eggs", 4),
+            new Ingredient("Baking Powder", 2),
+            new Ingredient("Vanilla Extract", 1),
+            new Ingredient("Milk", 200),
+        };
+
+        foreach (Ingredient ingredient in ingredients)
+        {
+            GameObject obj = Instantiate(ingredientPrefab);
+            obj.transform.SetParent(contentTransform);
+            obj.transform.
